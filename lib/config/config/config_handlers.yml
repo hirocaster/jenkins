@@ -1,0 +1,38 @@
+data/config/plugin.yml:
+  class: sfOpenPNEPluginConfigHandler
+  file:  %SF_LIB_DIR%/config/sfOpenPNEPluginConfigHandler.class.php
+
+config/gadget_config.yml:
+  class: opGadgetConfigConfigHandler
+  file:  %SF_LIB_DIR%/config/opGadgetConfigConfigHandler.class.php
+
+config/gadget_layout_config.yml:
+  class: opGadgetConfigConfigHandler
+  file:  %SF_LIB_DIR%/config/opGadgetConfigConfigHandler.class.php
+  param:
+    prefix: layout_
+
+config/mobile_mail_domain.yml:
+  class: sfSimpleYamlConfigHandler
+
+config/mobile_ip_address.yml:
+  class: sfSimpleYamlConfigHandler
+
+config/sns_term.yml:
+  class: sfSimpleYamlConfigHandler
+
+config/mail_template.yml:
+  class: sfSimpleYamlConfigHandler
+
+config/confirmation.yml:
+  class: sfSimpleYamlConfigHandler
+
+config/monitoring.yml:
+  class: sfSimpleYamlConfigHandler
+
+modules/*/config/security.yml:
+  class:    opSecurityConfigHandler
+
+config/mobile_preset_color.yml:
+  class: sfSimpleYamlConfigHandler
+

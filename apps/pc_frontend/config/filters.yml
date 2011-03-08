@@ -1,0 +1,22 @@
+rendering: ~
+
+cache_control:
+  class: opCacheControlFilter
+
+enable_app:
+  class: opCheckEnabledApplicationFilter
+
+xrds_header:
+  class: opAppendXRDSHeaderFilter
+
+security:  ~
+
+emoji:
+  class: opEmojiFilter
+
+cache:     ~
+
+execution:
+  class: sfOpenPNEExecutionFilter
+  param:
+    type: execution

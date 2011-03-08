@@ -1,0 +1,38 @@
+# confirmation rules
+confirmation_list:
+  url:   /confirmation
+  param: { module: confirmation, action: list }
+
+confirmation_decision:
+  url:   /confirmation/:category/:id
+  class: sfRequestRoute
+  param: { module: confirmation, action: decision }
+  requirements: { id: \d+, sf_method: post }
+
+# openpne rules
+homepage:
+  url:   /
+  param: { module: member, action: home }
+
+friend_show_image:
+  url:   /friend/showImage/:id
+  param: { module: friend, action: showImage }
+  requirements: { id: \d+ }
+
+login:
+  url: /member/login/*
+  param: { module: member, action: login }
+
+error:
+  url: /default/error
+  param: { module: default, action: error }
+
+member_profile:
+  url:   /member/:id
+  param: { module: member, action: profile }
+  requirements: { id: \d+ }
+
+community_home:
+  url:   /community/:id
+  param: { module: community, action: home }
+  requirements: { id: \d+ }

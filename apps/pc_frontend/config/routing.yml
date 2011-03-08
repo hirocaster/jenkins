@@ -1,0 +1,116 @@
+# openpne rules
+homepage:
+  url:   /
+  param: { module: member, action: home }
+
+obj_member_profile:
+  url:     /member/:id
+  class:   sfDoctrineRoute
+  options: { model: Member, type: object }
+  param:   { module: member, action: profile }
+  requirements:
+    id:        \d+
+    sf_method: [get]
+
+obj_friend_unlink:
+  url:     /friend/unlink/:id
+  class:   sfDoctrineRoute
+  options: { model: Member, type: object }
+  param:   { module: friend, action: unlink }
+  requirements:
+    id: \d+
+    sf_method: [get, post]
+
+member_index:
+  url:   /member
+  param: { module: member, action: home }
+
+login:
+  url: /member/login/*
+  param: { module: member, action: login }
+
+error:
+  url: /default/error
+  param: { module: default, action: error }
+
+    
+# oauth rules
+oauth_request_token:
+  url:   /oauth/request_token
+  param: { module: oauth, action: requestToken }
+
+oauth_authorize_token:
+  url:   /oauth/authorize
+  param: { module: oauth, action: authorizeToken }
+
+oauth_access_token:
+  url:   /oauth/access_token
+  param: { module: oauth, action: accessToken }
+
+# connection rules
+connection:
+  class: opStandardRouteCollection
+  options: { model: OAuthConsumerInformation, actions: [show, new, create, edit, update, deleteConfirm, delete], is_acl: true }
+
+connection_list:
+  url:     /connection
+  param:   { module: connection, action: list }
+
+connection_revoke_token_confirm:
+  url:     /connection/revoke/:id
+  class:   opDynamicAclRoute
+  options: { model: OAuthConsumerInformation, type: object, privilege: use }
+  param:   { module: connection, action: revokeTokenConfirm }
+  requirements: { id: \d+, sf_method: get }
+
+connection_revoke_token:
+  url:     /connection/revoke/:id
+  class:   opDynamicAclRoute
+  options: { model: OAuthConsumerInformation, type: object, privilege: use }
+  param:   { module: connection, action: revokeToken }
+  requirements: { id: \d+, sf_method: post }
+
+# confirmation rules
+confirmation_list:
+  url:   /confirmation
+  param: { module: confirmation, action: list }
+
+confirmation_decision:
+  url:   /confirmation/:category/:id
+  class: sfRequestRoute
+  param: { module: confirmation, action: decision }
+  requirements: { id: \d+, sf_method: post }
+
+# customizing css
+customizing_css:
+  url: /cache/css/customizing.:sf_format
+  param: { module: default, action: customizingCss, sf_format: css }
+
+# for BC
+member_profile:
+  url:   /member/:id
+  param: { module: member, action: profile }
+  requirements: { id: \d+ }
+
+friend_show_image:
+  url:   /friend/showImage/:id
+  param: { module: friend, action: showImage }
+  requirements: { id: \d+ }
+
+community_home:
+  url:   /community/:id
+  param: { module: community, action: home }
+  requirements: { id: \d+ }
+
+privacy_policy:
+  url: /default/privacyPolicy
+  param: { module: default, action: privacyPolicy }
+
+user_agreement:
+  url: /default/userAgreement
+  param: { module: default, action: userAgreement }
+
+# for cmd
+google_maps:
+  url:  /googlemaps
+  param: { module: googlemaps, action: index }
